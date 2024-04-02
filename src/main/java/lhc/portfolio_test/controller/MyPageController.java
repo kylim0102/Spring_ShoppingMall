@@ -1,7 +1,9 @@
 package lhc.portfolio_test.controller;
 
+import lhc.portfolio_test.dto.CartDTO;
 import lhc.portfolio_test.dto.CustomUserDetails;
 import lhc.portfolio_test.dto.MyPageDTO;
+import lhc.portfolio_test.repository.ProductRepository;
 import lhc.portfolio_test.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,6 +16,7 @@ public class MyPageController {
 
     @Autowired
     private MemberService memberService;
+    private ProductRepository productRepository;
 
     @GetMapping("/my/mypage")
     public String myPage(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model) {
@@ -25,10 +28,12 @@ public class MyPageController {
         return "/my/mypage";
     }
 
-    @GetMapping("/my/buy")
-    public String buyPage(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model) {
+    @GetMapping("/my/cart")
+    public String cartPage(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model) {
         String userid = customUserDetails.getUsername();
+        CartDTO cartDTO = memberService.findByUserid(userid);
 
-        return "/my/buy";
+        model.addAttribute("cartDTO", cartDTO);
+        return "/my/cart";
     }
 }
