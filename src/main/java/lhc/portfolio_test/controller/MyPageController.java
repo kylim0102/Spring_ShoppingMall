@@ -24,4 +24,11 @@ public class MyPageController {
 
         return "/my/mypage";
     }
+
+    @GetMapping("/my/buy")
+    public String buyPage(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model) {
+        String userid = customUserDetails.getUsername();
+
+        return "/my/buy";
+    }
 }
