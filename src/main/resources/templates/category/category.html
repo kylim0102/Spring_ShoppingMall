@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+</head>
+<body>
+    <aside class="category">
+        <ul class="category_menu">
+            <li th:each="categoryName : ${category}">
+                <a th:href="@{'/category/' + ${categoryName}}" th:text="${categoryName}"></a>
+                <ul class="sub-category">
+                    <li th:each="subCategory : ${__${categoryName}__SubCategories}">
+                        <a th:href="@{'/category/' + ${categoryName} + '/' + ${subCategory}}" th:text="${subCategory}"></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </aside>
+</body>
+</html>

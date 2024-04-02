@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div th:insert="~{/inc/header.html}"></div>
+    <div th:insert="~{/inc/nav.html}"></div>
+    <div>
+        <section>
+            <div id="pd_name">
+                <h2 th:text="${dto.p_name}"></h2>
+            </div>
+            <div style="display: flex">
+                <div th:insert="~{category/category.html}"></div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr;">
+                    <div id="file-item">
+                        <div th:each="file : ${dto.s_file}">
+                            <img th:src="@{|/upload/${file}|}" width="300px">
+                        </div>
+                    </div>
+                    <div id="content">
+                        <pre id="content-item">
+                            판매가 <span th:text="${dto.p_price}"></span><br>
+                            <span class="bold">상품 설명 <span th:text="${dto.p_contents}" class="bold"></span></span>
+                        </pre>
+                        <div>
+                            총 상품금액(수량) : <span id="totalPrice" th:attr="data-price=${dto.p_price}"></span>(<span id="quantity">1</span>개)
+                        </div>
+                        <div id="count">
+                            <button id="decrease">-</button>
+                            <input type="number" id="number" min="1" value="1">
+                            <button id="increase">+</button>
+                        </div>
+                        <div id="btn">
+                            <button type="button">BUY</button>
+                            <button type="button">CART</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div th:insert="~{/inc/footer.html}"></div>
+<script src="/js/count.js"></script>
+<script>
+    updateQuantity();
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:insert="~{/inc/header.html}"></div>
+<div th:insert="~{/inc/nav.html}"></div>
+<div>
+    <section>
+        <h2>카테고리 관리</h2>
+        <form action="/admin/categorywrite" method="post">
+            <table border="1" align="center">
+                <tr>
+                    <th>카테고리</th>
+                    <td colspan="2">
+                        <input type="number" name="parentCategory">
+                    </td>
+                </tr>
+                <tr>
+                    <th>서브 카테고리</th>
+                    <td colspan="2">
+                        <input type="text" name="subCategories">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><input type="submit" value="카테고리 등록"></td>
+                </tr>
+            </table>
+        </form>
+    </section>
+</div>
+<div th:insert="~{/inc/footer.html}"></div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:insert="~{/inc/header.html}"></div>
+<div th:insert="~{/inc/nav.html}"></div>
+<div>
+    <section>
+        <div id="ctn">
+            <h2 th:if="${childCategoryName}" th:text="${#strings.toUpperCase(childCategoryName)}"></h2>
+            <h2 th:unless="${childCategoryName}" th:text="${#strings.toUpperCase(parentCategoryName)}"></h2>
+        </div>
+        <div id="product-list">
+            <ul id="product">
+                <li th:each="product: ${productList}">
+                    <div>
+                        <a th:href="'/product/view/' + ${product.idx}">
+                            <img th:src="@{|/upload/Thumb_${product.productImgEntityList[0].s_file}|}">
+                            <div th:text="${product.p_name}"></div>
+                            <div th:text="${#numbers.formatInteger(product.p_price, 3, 'COMMA') + '원'}"></div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="pagination" th:if="${totalPage >= 1}">
+            <div th:if="${startPage > 1}">
+                <a th:href="@{|/category/${parentCategoryName}${childCategoryName != null ? '/' + childCategoryName : ''}?page=0|}">◀</a>
+                <a th:href="@{|/category/${parentCategoryName}${childCategoryName != null ? '/' + childCategoryName : ''}?page=${startPage - 2}|}">prev</a>
+            </div>
+            <div th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}">
+                <div th:if="${currentPage == pageNumber - 1}" id="current-Page">
+                    <span th:text="${pageNumber}"></span>
+                </div>
+                <div th:unless="${currentPage == pageNumber - 1}">
+                    <a th:href="@{|/category/${parentCategoryName}${childCategoryName != null ? '/' + childCategoryName : ''}?page=${pageNumber - 1}|}" th:text="${pageNumber}"></a>
+                </div>
+            </div>
+            <div th:if="${endPage < totalPage}">
+                <a th:href="@{|/category/${parentCategoryName}${childCategoryName != null ? '/' + childCategoryName : ''}?page=${endPage}|}">next</a>
+                <a th:href="@{|/category/${parentCategoryName}${childCategoryName != null ? '/' + childCategoryName : ''}?page=${totalPage - 1}|}">▶</a>
+            </div>
+        </div>
+    </section>
+</div>
+<div th:insert="~{/inc/footer.html}"></div>
+</body>
+</html>

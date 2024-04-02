@@ -1,0 +1,106 @@
+포트폴리오 (쇼핑몰)
+
+1. 회원관리
+- 회원가입
+- 로그인/로그아웃
+- 마이페이지
+- 회원관리
+
+2. 쇼핑몰
+- 메인홈
+- 상품 페이지
+- 카테고리
+- 상품 상세 페이지 (댓글 기능 추가)
+- 상품 관리 페이지
+- 장바구니
+- 배송 조회
+
+1. table (member_table)
+- idx
+- 아이디
+- 비밀번호
+- 이름
+- 주민등록번호
+- 주소
+- 전화번호
+- 이메일
+- 역할
+- 가입 날짜
+
+2. table (product)
+- idx
+- 상품명
+- 상품 가격
+- 상품 설명
+- 상품 등록 날짜
+- 재고
+- 조회수
+- 카테고리
+- 파일 유무
+
+3. table (product_img)
+- idx
+- regdate
+- o_file
+- s_file
+- p_idx = product_idx
+
+4. table (product_comment)
+- idx
+- 댓글 등록 날짜
+- p_idx = product_idx
+- 작성자 (member_table idx)
+- 내용
+
+5. table (category)
+- 대분류
+- 소분류 (카테고리) = product_카테고리
+
+회원관리 테이블
+create table member_tbl (
+    idx int not null primary key,
+    id varchar2 (250) not null,
+    password varchar2 (250) not null,
+    name varchar2 (250) not null,
+    rrn number (250) not null, --주민번호
+    phone number(250) not null,
+    email varchar2(250) not null,
+    role varchar2(250) not null,
+    regdate sysdate
+);
+
+상품 이미지 테이블
+create table product_img (
+    idx int not null primary key,    
+    o_file varchar2 (250),
+    s_file varchar2 (250),
+    constraint p_idx int foreign key references product (idx);
+);
+
+상품 댓글 테이블
+create table product_comment (
+    idx int not null primary key,
+    regdate sysdate,
+    constraint p_idx int foreign key references product (idx),
+    member_idx int foreign key references member (idx),
+    comment varchar2 (250)    
+);
+
+상품관리 테이블
+create table product (
+    idx int not null primary key,
+    p_name varchar2 (250) not null,
+    p_price number (250) not null,
+    p_contents varchar2 (500),
+    posted_date date,
+    inventory number (250), --재고
+    hits number(9) not null default 0,
+    category number(9) not null --fk (product_category_idx)
+);
+
+카테고리 테이블
+create table product_category (
+    idx number(9) not null primary key, 
+    category_name varchar2(40) not null,
+    parent_idx number(9) --fk (product_category_idx)
+);

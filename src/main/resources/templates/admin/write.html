@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Write</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:insert="~{/inc/header.html}"></div>
+<div th:insert="~{/inc/nav.html}"></div>
+<div>
+    <section>
+        <h2>상품 등록</h2>
+        <form action="/admin/write" method="post" enctype="multipart/form-data">
+            <table border="1" align="center">
+                <tr>
+                    <th>카테고리</th>
+                    <td colspan="2">
+                        <select name="category_idx" id="selectCategory" onchange="updateSubCategory()">
+                            <option value="">---선택---</option>
+                            <option value="1">OUTER</option>
+                            <option value="2">TOP</option>
+                            <option value="3">BOTTOM</option>
+                            <option value="4">ACC</option>
+                        </select>
+                        <select name="sub_category_idx" id="subCategories">
+                            <option value="">---선택---</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>상품명</th>
+                    <td><input type="text" name="p_name"></td>
+                </tr>
+                <tr>
+                    <th>상품 가격</th>
+                    <td><input type="text" name="p_price"></td>
+                </tr>
+                <tr>
+                    <th>상품 이미지</th>
+                    <td><input type="file" name="productImg"><br>
+                        <input type="file" name="productImg"><br>
+                        <input type="file" name="productImg"></td>
+                </tr>
+                <tr>
+                    <th>상품 설명</th>
+                    <td><textarea name="p_contents" cols="30" rows="10"></textarea></td>
+                </tr>
+                <tr>
+                    <th>재고수</th>
+                    <td><input type="text" name="inventory"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><input type="submit" value="상품 등록"></td>
+                </tr>
+            </table>
+            <input type="hidden" name="sub_category_idx" id="sub_category_idx" value="">
+        </form>
+    </section>
+</div>
+<div th:insert="~{/inc/footer.html}"></div>
+<script src="/js/write.js"></script>
+</body>
+</html>

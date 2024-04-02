@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MyPage</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:insert="~{/inc/header.html}"></div>
+<div th:insert="~{/inc/nav.html}"></div>
+<div>
+    <section>
+        <h2>마이 페이지</h2>
+            <table border="1" align="center">
+                <tr>
+                    <th>이름</th>
+                        <td th:text="${memberDTO.name}"></td>
+                </tr>
+                <tr>
+                    <th>아이디</th>
+                        <td th:text="${memberDTO.id}"></td>
+                </tr>
+                <tr>
+                    <th>전화번호</th>
+                        <td th:text="${memberDTO.phone}"></td>
+                </tr>
+                <tr>
+                    <th>이메일</th>
+                        <td th:text="${memberDTO.email}"></td>
+                </tr>
+                <tr>
+                    <th>예치금</th>
+                        <td th:text="${memberDTO.cash}"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="button" onclick="modifyReq()">수정</button>
+                    </td>
+                </tr>
+            </table>
+    </section>
+</div>
+<div th:insert="~{/inc/footer.html}"></div>
+</body>
+</html>
