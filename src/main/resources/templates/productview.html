@@ -10,6 +10,7 @@
     <div th:insert="~{/inc/nav.html}"></div>
     <div>
         <section>
+            <form>
             <div id="pd_name">
                 <h2 th:text="${dto.p_name}"></h2>
             </div>
@@ -30,17 +31,19 @@
                             총 상품금액(수량) : <span id="totalPrice" th:attr="data-price=${dto.p_price}"></span>(<span id="quantity">1</span>개)
                         </div>
                         <div id="count">
-                            <button id="decrease">-</button>
+                            <button type="button" id="decrease">-</button>
                             <input type="number" id="number" min="1" value="1">
-                            <button id="increase">+</button>
+                            <button type="button" id="increase">+</button>
                         </div>
                         <div id="btn">
+                            <input type="hidden" value="product_idx">
+                            <input type="submit" value="CART">
                             <a href="/my/buy"><button type="button">BUY</button></a>
-                            <a href="/my/cart"><button type="button">CART</button></a>
                         </div>
                     </div>
                 </div>
             </div>
+            </form>
         </section>
     </div>
     <div th:insert="~{/inc/footer.html}"></div>

@@ -47,4 +47,6 @@ public class CategoryEntity {
     public CategoryEntity(String categoryName) {
         this.categoryName = categoryName;
     }
+
+
 }

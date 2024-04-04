@@ -1,5 +1,6 @@
 package lhc.portfolio_test.controller;
 
+import lhc.portfolio_test.dto.CartDTO;
 import lhc.portfolio_test.dto.CustomUserDetails;
 import lhc.portfolio_test.dto.MyPageDTO;
 import lhc.portfolio_test.service.CartService;
@@ -29,11 +30,17 @@ public class MyPageController {
     }
 
     @GetMapping("/my/cart")
-    public String cartPage(@AuthenticationPrincipal CustomUserDetails customUserDetails, @RequestParam("quantity") int quantity, @RequestParam("idx") Long idx, Model model) {
+    public String cartPage(@AuthenticationPrincipal CustomUserDetails customUserDetails,
+                           @RequestParam("product_idx") Long idx, @RequestParam("quantity") Integer quantity,
+                           Model model) {
         String userid = customUserDetails.getUsername();
 
-        cartService.saveCart(userid, quantity, idx);
-        model.addAttribute("cartProducts", cartService.getCartProducts(userid));*/
+        if(idx != null && quantity != null && idx != 0 && quantity != 0) {
+            CartDTO dto = CartService.savecart(userid, idx, quantity);
+        }
+
+        MyPageDTO dto = memberService.findByUserid(userid);
+        model.addAttribute("dto", dto);
         return "/my/cart";
     }
 }

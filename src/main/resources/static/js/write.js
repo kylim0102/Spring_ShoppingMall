@@ -1,6 +1,27 @@
 window.onload = function() {
     updateSubCategory();
+     fetchCategories();
 };
+
+function fetchCategories() {
+    fetch('/api/categories')
+        .then(response => response.json())
+        .then(categories => {
+            const selectCategory = document.getElementById("selectCategory");
+            selectCategory.innerHTML = "<option value=''>---선택---</option>"; // 기본 옵션 추가
+            console.log(categories);
+
+            for (var i=0; i<categories.length; i++) {
+                const optionElement = document.createElement("option");
+                optionElement.text = categories[i].categoryName;
+                optionElement.value = categories[i].id;
+                selectCategory.appendChild(optionElement);
+
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
 
 function updateSubCategory() {
     var selectCategory = document.getElementById("selectCategory");

@@ -1,9 +1,11 @@
     package lhc.portfolio_test.entity;
 
     import jakarta.persistence.*;
-    import lombok.*;
+    import lombok.Builder;
+    import lombok.Getter;
+    import lombok.NoArgsConstructor;
+    import lombok.Setter;
     import org.hibernate.annotations.CreationTimestamp;
-    import org.springframework.transaction.annotation.Transactional;
 
     import java.time.LocalDate;
     import java.util.ArrayList;

@@ -21,4 +21,9 @@ public interface ProductCategoryRepository extends JpaRepository<CategoryEntity,
 
     @Query("SELECT c.idx FROM CategoryEntity c WHERE lower(c.categoryName) = lower(:categoryName)")
     Long findCategoryIdByCategoryName(@Param("categoryName") String categoryName);
+
+    @Query("select c from CategoryEntity c where c.parentCategory is null")
+    List<CategoryEntity> findAllWhereParentIsNull();
+
+
 }
