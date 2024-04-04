@@ -22,8 +22,9 @@ public class CartService {
         CartDTO cartDTO = new CartDTO();
         cartDTO.setUsername(userid);
         cartDTO.setIdx(idx);
+        cartDTO.setCartProducts(productEntity);
         cartDTO.setQuantity(quantity);
 
-        return cartDTO;
+        return cartRepository.save(cartDTO);
     }
 }
