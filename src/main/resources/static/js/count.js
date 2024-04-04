@@ -34,4 +34,5 @@ function updateQuantity() {
     const totalPrice = pricePerItem * quantity;
     totalPriceSpan.textContent = totalPrice.toLocaleString() + '원';
     quantitySpan.textContent = quantity.toLocaleString();
+    document.getElementById('hiddenQuantity').value = quantity; // hidden input 업데이트
 }
