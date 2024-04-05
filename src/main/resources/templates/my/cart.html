@@ -24,9 +24,11 @@
                        <input type="checkbox" value="idx">
                    </td>
                     <td>
-                       <!-- <img src="${dto.}">-->
+                       <img th:src="@{|/upload/Thumb_${cart.cartProducts.productImgEntityList[0].s_file}|}">
                     </td>
-                    <!--<td th:text="${cart.p_name}"></td>-->
+                    <td th:text="${cart.cartProducts.p_name}"></td>
+                    <td th:text="${#numbers.formatInteger(cart.quantity, 1, 'COMMA')+ '개'}"></td>
+                    <td th:text="${#numbers.formatInteger(cart.cartProducts.p_price, 3, 'COMMA') + '원'}"></td>
                 </tr>
             </table>
         </section>

@@ -6,7 +6,6 @@ import lombok.*;
 
 @Entity
 @Getter
-@Setter
 @Table(name = "cart")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CartEntity {
@@ -15,12 +14,15 @@ public class CartEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_products_idx")
     private ProductEntity cartProducts;
 
+    @Setter
     private String username;
 
+    @Setter
     private int quantity;
 
     public CartEntity(ProductEntity cartProducts, String username, int quantity) {
@@ -34,7 +36,7 @@ public class CartEntity {
                 .idx(idx)
                 .cartProducts(cartProducts)
                 .username(username)
-                .quantity(0)
+                .quantity(quantity)
                 .build();
     }
 }

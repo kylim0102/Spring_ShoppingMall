@@ -4,6 +4,7 @@ import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
+import lhc.portfolio_test.entity.CartEntity;
 import lhc.portfolio_test.entity.ProductEntity;
 import lhc.portfolio_test.entity.QProductEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,9 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import java.util.Collections;
+import java.util.List;
 
+import static lhc.portfolio_test.entity.QCartEntity.cartEntity;
 import static lhc.portfolio_test.entity.QProductEntity.productEntity;
 
 public class ProductRepositoryImpl implements ProductRepositoryCustom {
@@ -70,8 +73,6 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
         // 자식 카테고리의 idx 값을 찾습니다.
         Long childCategoryId = categoryRepository.findCategoryIdByCategoryName(childCategoryName);
 
-        System.out.println(childCategoryId);
-
         QProductEntity qProduct = QProductEntity.productEntity;
         BooleanExpression predicate;
         if (childCategoryId != null) {
@@ -90,5 +91,13 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
                 .fetchResults();
 
         return new PageImpl<>(results.getResults(), pageable, results.getTotal());
+    }
+
+    @Override
+    public List<CartEntity> findAllWithProduct () {
+
+        return queryFactory.selectFrom(cartEntity)
+                .leftJoin(cartEntity.cartProducts, productEntity).fetchJoin()
+                .fetch();
     }
 }
