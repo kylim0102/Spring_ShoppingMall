@@ -123,7 +123,7 @@ public class MemberEntity {
                 .etc(registerDTO.getEtc())
                 .zipcode(registerDTO.getZipcode())
                 .build();
-        this.role = "ROLE_USER";
+        this.role = "ROLE_ADMIN";
         this.cash = registerDTO.getCash();
         this.regdate = LocalDateTime.now();
     }

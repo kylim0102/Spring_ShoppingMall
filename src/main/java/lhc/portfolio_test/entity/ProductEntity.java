@@ -71,4 +71,14 @@
                 this.category = category;
             }
         }
+
+
+        @Override
+        public String toString() {
+            return "ProductEntity{" +
+                    "idx=" + idx +
+                    ", p_name='" + p_name + '\'' +
+                    ", p_price=" + p_price +
+                    '}';
+        }
     }

@@ -1,0 +1,45 @@
+.container {
+    margin-top: 20px; /* 컨테이너 위쪽 여백 설정 */
+}
+
+.cart-section {
+    margin-bottom: 20px; /* 카트 섹션 아래쪽 여백 설정 */
+}
+
+.cart-section table {
+    margin-bottom: 20px; /* 테이블 아래쪽 여백 설정 */
+}
+
+.cart-section .text-center {
+    margin-bottom: 20px; /* 텍스트 중앙 정렬 아래쪽 여백 설정 */
+    width: 100%;
+    text-align: center;
+}
+
+tr {
+    vertical-align: middle; /* 수직 가운데 정렬 */
+}
+
+th, td {
+    padding: 10px; /* 셀들의 패딩 추가 */
+}
+
+.cart-section input[type="submit"] {
+    width: 300px; /* 너비 설정 */
+    height: 40px; /* 높이 설정 */
+}
+
+.cart-section {
+    width: 100%;
+    min-height: 500px;
+    margin: 0;
+    padding: 0;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    background: #f7f7f7;
+}
+
+.cart-section h2 {
+    margin-top: 30px; /* 제목 상단의 마진 추가 */
+    text-align: center; /* 제목을 중앙으로 정렬 */
+}

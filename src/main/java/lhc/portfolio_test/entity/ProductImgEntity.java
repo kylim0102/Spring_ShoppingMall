@@ -40,4 +40,12 @@ public class ProductImgEntity {
         return productImgEntity;
     }
 
+    @Override
+    public String toString() {
+        return "ProductImgEntity{" +
+                "idx=" + idx +
+                ", o_file='" + o_file + '\'' +
+                ", s_file='" + s_file + '\'' +
+                '}';
+    }
 }

@@ -90,6 +90,8 @@ public class CategoryController {
         for (ProductEntity product : productPage.getContent()) {
             Long productId = product.getIdx();
             List<ProductImgEntity> productImages = productService.findProductImages(productId);
+            System.out.println("productImages.get(0).getS_file() = " + productImages.get(0).getS_file());
+
             if (!productImages.isEmpty()) {
                 model.addAttribute("productImages", productImages.get(0).getS_file());
             }
